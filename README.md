@@ -68,7 +68,7 @@ layout_title.xml
 	</LinearLayout>
 	
 	
-3 - Initialize **SMAListView** : 
+3 - Initialize **SMAListView** : <br/>
 **numberOfColumn** : indicate the number of column in your list
 **getDataViews()** : populate your list with this method
 **SMAListListener()** : interface to implement to access onBindViewHolder()
