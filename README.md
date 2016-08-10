@@ -1,5 +1,7 @@
 # SMAListView
 
+![Alt text](/grid.gif?raw=true "Optional title")
+
 ## Problem
 
 RecyclerView has always been difficult to use.
