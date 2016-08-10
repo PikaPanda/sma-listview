@@ -69,8 +69,8 @@ layout_title.xml
 	
 	
 3 - Initialize **SMAListView** : <br/>
-**numberOfColumn** : indicate the number of column in your list
-**getDataViews()** : populate your list with this method
+**numberOfColumn** : indicate the number of column in your list<br/>
+**getDataViews()** : populate your list with this method<br/>
 **SMAListListener()** : interface to implement to access onBindViewHolder()
 
 	listView.initData(numberOfColumn, getDataViews(), new SMAListListener() {
