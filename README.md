@@ -23,33 +23,77 @@ I introduce you the **SMAListView** that is SO simple to use.
 
 	<fr.smartapps.smalistview.SMAListView
 		android:id="@+id/list"
+            	android:orientation="horizontal"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"/>
+		android:layout_height="wrap_content"/>
+ 
+                
+2 - Create some cells layout to add to your list :
 
+**layout_image_and_title.xml**
 
-2 - Initialize **SMAListView** :
+	<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+	    
+	    <ImageView
+                android:id="@+id/row_image"
+		android:layout_width="40dp"
+		android:layout_height="40dp"/>
+                
+            <TextView
+	        android:id="@+id/row_title"
+	        android:layout_margin="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	
+	</LinearLayout>
+
+**layout_title.xml**
+
+	<?xml version="1.0" encoding="utf-8"?>
+	<LinearLayout
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
+
+            <TextView
+	        android:id="@+id/row_title"
+	        android:layout_margin="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
+	
+	</LinearLayout>
+	
+	
+2 - Initialize **SMAListView** : 
+- **numberOfColumn** : indicate the number of column in your list
+- **getDataViews()** : populate your list with this method
+- **SMAListListener()** : interface to implement to access onBindViewHolder()
 
 	listView.initData(numberOfColumn, getDataViews(), new SMAListListener() {
 	@Override
 	public void onBindViewHolder(View itemView, SMADataView dataView) {
-        [ ... next step ... ]
+        	[ ... next step ... ]
         }
 	});
 
 
 
-3 - Set datas :
+3 - Set datas : here I add 2 differents cells (one with a title and a second one with a title and an image) :
 
 	protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
 
-        // data 1
-		SMADataView dataView1 = new SMADataView(YourLayout1);
+        	// data title
+		SMADataView dataView1 = new SMADataView(R.layout.layout_title);
 		dataView1.setTitle("Title 1");  
 		result.add(dataView1);
 
-		// data 2
-		SMADataView dataView2 = new SMADataView(YourLayout2);
+		// data image & title
+		SMADataView dataView2 = new SMADataView(R.layout.layout_image_and_title);
 		dataView2.setTitle("Title 2");
 		dataView2.setImage(url_image);
 		result.add(dataView2);
