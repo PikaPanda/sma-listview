@@ -68,10 +68,10 @@ I introduce you the **SMAListView** that is SO simple to use.
 	</LinearLayout>
 	
 	
-2 - Initialize **SMAListView** : 
-- **numberOfColumn** : indicate the number of column in your list
-- **getDataViews()** : populate your list with this method
-- **SMAListListener()** : interface to implement to access onBindViewHolder()
+3 - Initialize **SMAListView** : 
+**numberOfColumn** : indicate the number of column in your list
+**getDataViews()** : populate your list with this method
+**SMAListListener()** : interface to implement to access onBindViewHolder()
 
 	listView.initData(numberOfColumn, getDataViews(), new SMAListListener() {
 	@Override
@@ -82,7 +82,7 @@ I introduce you the **SMAListView** that is SO simple to use.
 
 
 
-3 - Set datas : here I add 2 differents cells (one with a title and a second one with a title and an image) :
+4 - Set datas : here I add 2 differents cells (one with a title and a second one with a title and an image) :
 
 	protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
@@ -102,7 +102,7 @@ I introduce you the **SMAListView** that is SO simple to use.
 	}
 
 
-4 - Use your datas in the callback : 
+5 - Use your datas in the callback : 
 
 	@Override
 	public void onBindViewHolder(View itemView, SMADataView dataView) {
@@ -118,6 +118,8 @@ I introduce you the **SMAListView** that is SO simple to use.
 			Glide.with(this).load(dataView.getImage()).into(imageView);
 		}
 	}
+
+# More
 
 ## More : set data
 
