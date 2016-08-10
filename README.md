@@ -21,29 +21,29 @@ I introduce you the **SMAListView** that is SO simple to use.
 
 1 - Add the widget **SMAListView** to your layout :
 
-	<fr.smartapps.smalistview.SMAListView
-	android:id="@+id/list"
+        <fr.smartapps.smalistview.SMAListView
+            android:id="@+id/list"
             android:orientation="horizontal"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
  
                 
 2 - Create some cells layout to add to your list :
 
 layout_image_and_title.xml
 
-	<?xml version="1.0" encoding="utf-8"?>
-	<LinearLayout
+        <?xml version="1.0" encoding="utf-8"?>
+        <LinearLayout
 	    xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
 	    
-	    	<ImageView
+	    <ImageView
                 android:id="@+id/row_image"
-		android:layout_width="40dp"
-		android:layout_height="40dp"/>
+	        android:layout_width="40dp"
+	        android:layout_height="40dp"/>
                 
-            	<TextView
+            <TextView
 	        android:id="@+id/row_title"
 	        android:layout_margin="10dp"
 	        android:layout_width="match_parent"
