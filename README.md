@@ -44,10 +44,10 @@ layout_image_and_title.xml
 	        android:layout_height="40dp"/>
 	        
 	    <TextView
-	    android:id="@+id/row_title"
-	    android:layout_margin="10dp"
-	    android:layout_width="match_parent"
-	    android:layout_height="wrap_content" />
+	        android:id="@+id/row_title"
+	        android:layout_margin="10dp"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" />
 	
 	</LinearLayout>
 
@@ -87,7 +87,7 @@ layout_title.xml
 	protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
         
-                // data title
+        // data title
 		SMADataView dataView1 = new SMADataView(R.layout.layout_title);
 		dataView1.setTitle("Title 1");  
 		result.add(dataView1);
