@@ -55,15 +55,15 @@ layout_title.xml
 
 	<?xml version="1.0" encoding="utf-8"?>
 	<LinearLayout
-	    	xmlns:android="http://schemas.android.com/apk/res/android"
-	    	android:layout_width="match_parent"
-	    	android:layout_height="wrap_content">
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/row_title"
-                    android:layout_margin="10dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/row_title"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 	
 	</LinearLayout>
 	
@@ -87,7 +87,7 @@ layout_title.xml
 	protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
 
-        	// data title
+                // data title
 		SMADataView dataView1 = new SMADataView(R.layout.layout_title);
 		dataView1.setTitle("Title 1");  
 		result.add(dataView1);
