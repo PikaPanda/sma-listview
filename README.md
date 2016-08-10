@@ -30,7 +30,7 @@ I introduce you the **SMAListView** that is SO simple to use.
                 
 2 - Create some cells layout to add to your list :
 
-**layout_image_and_title.xml**
+layout_image_and_title.xml
 
 	<?xml version="1.0" encoding="utf-8"?>
 	<LinearLayout
@@ -51,7 +51,7 @@ I introduce you the **SMAListView** that is SO simple to use.
 	
 	</LinearLayout>
 
-**layout_title.xml**
+layout_title.xml
 
 	<?xml version="1.0" encoding="utf-8"?>
 	<LinearLayout
