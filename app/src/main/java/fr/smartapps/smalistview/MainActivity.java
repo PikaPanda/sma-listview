@@ -1,13 +1,11 @@
 package fr.smartapps.smalistview;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,87 +20,91 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
 
     protected void setListView() {
         SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(2, getDataViews(), this);
+        listView.initData(1, getDataViews(), this);
     }
 
     protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
 
-        // data 0
-        SMADataView dataView0 = new SMADataView(R.layout.list_title);
-        dataView0.setFullWidth(true);
-        dataView0.setTitle("Title 0");
-        result.add(dataView0);
+        // title
+        SMADataView dataTitle = new SMADataView(R.layout.list_title);
+        dataTitle.setTitle("SMAListView Showcase");
 
-        // data 1
-        SMADataView dataView1 = new SMADataView(R.layout.list_stretchable_card_rectangle);
-        dataView1.setFullWidth(true);
-        dataView1.setTitle("Title 1");
-        dataView1.setSubtitle("Subtitle 1");
-        dataView1.setImage("file:///android_asset/media9239_M.jpg");
-        result.add(dataView1);
+        // text
+        SMADataView dataText = new SMADataView(R.layout.list_text);
+        dataText.setTitle("Welcome to SMAListView showcase. Here you can see every possibilities this library can offer with a very easy implementation.");
 
-        for (int position = 2; position < 100; position++) {
-            SMADataView dataView = new SMADataView(R.layout.list_stretchable_card_square);
-            dataView.setTitle("Title " + position);
-            dataView.setTitle("Subtitle " + position);
-            switch (position % 6) {
-                case 0:
-                    dataView.setImage("file:///android_asset/media9240_M.jpg");
-                    break;
-                case 1:
-                    dataView.setImage("file:///android_asset/media9241_M.jpg");
-                    break;
-                case 2:
-                    dataView.setImage("file:///android_asset/media9242_M.jpg");
-                    break;
-                case 3:
-                    dataView.setImage("file:///android_asset/media9243_M.jpg");
-                    break;
-                case 4:
-                    dataView.setImage("file:///android_asset/media9244_M.jpg");
-                    break;
-                case 5:
-                    dataView.setImage("file:///android_asset/media9245_M.jpg");
-                    break;
-                case 6:
-                    dataView.setImage("file:///android_asset/media9239_M.jpg");
-                    break;
-            }
-            result.add(dataView);
-        }
+        // options 1
+        SMADataView dataOptionGrid = new SMADataView(R.layout.list_button);
+        dataOptionGrid.setTitle("GridView");
+        dataOptionGrid.setId(1);
 
+        // options 2
+        SMADataView dataOptionList = new SMADataView(R.layout.list_button);
+        dataOptionList.setTitle("ListView");
+        dataOptionList.setId(2);
+
+        // options 3
+        SMADataView dataOptionAsyncList = new SMADataView(R.layout.list_button);
+        dataOptionAsyncList.setTitle("Asynchronous ListView");
+        dataOptionAsyncList.setId(3);
+
+        // options 4
+        SMADataView dataOptionRefreshList = new SMADataView(R.layout.list_button);
+        dataOptionRefreshList.setTitle("Asynchronous ListView");
+        dataOptionRefreshList.setId(4);
+
+        // add each view
+        result.add(dataTitle);
+        result.add(dataText);
+        result.add(dataOptionGrid);
+        result.add(dataOptionList);
+        result.add(dataOptionAsyncList);
+        result.add(dataOptionRefreshList);
+
+        // return list of view to display them in the listView
         return result;
     }
 
     @Override
-    public void onBindViewHolder(View itemView, SMADataView dataView) {
+    public void onBindViewHolder(View itemView, final SMADataView dataView) {
         // title
         TextView titleView = (TextView) itemView.findViewById(R.id.row_title);
         if (titleView != null && dataView.getTitle() != null) {
             titleView.setText(dataView.getTitle());
         }
 
-        // subtitle
-        TextView subtitleView = (TextView) itemView.findViewById(R.id.row_subtitle);
-        if (subtitleView != null && dataView.getSubtitle() != null) {
-            subtitleView.setText(dataView.getSubtitle());
-        }
+        // options
+        if (dataView.resourceViewIdx == R.layout.list_button) {
+            Button buttonGo = (Button) findViewById(R.id.row_button);
 
-        // image
-        ImageView imageView = (ImageView) itemView.findViewById(R.id.row_image);
-        if (imageView != null && dataView.getImage() != null) {
-            Glide.with(this).load(dataView.getImage()).into(imageView);
-        }
+            if (buttonGo == null)
+                return;
 
-        // special case
-        switch (dataView.resourceViewIdx) {
-            case R.layout.list_stretchable_card_rectangle:
-                break;
-            case R.layout.list_stretchable_card_square:
-                break;
-            case R.layout.list_title:
-                break;
+            // define each GO button onClickListener thX to ID
+            buttonGo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    switch (dataView.getId()) {
+                        case 1:
+                            Intent intentGrid = new Intent(getApplicationContext(), GridActivity.class);
+                            startActivity(intentGrid);
+                            break;
+                        case 2:
+                            Intent intentList = new Intent(getApplicationContext(), GridActivity.class);
+                            startActivity(intentList);
+                            break;
+                        case 3:
+                            Intent intentAsyncList = new Intent(getApplicationContext(), GridActivity.class);
+                            startActivity(intentAsyncList);
+                            break;
+                        case 4:
+                            Intent intentRefreshList = new Intent(getApplicationContext(), GridActivity.class);
+                            startActivity(intentRefreshList);
+                            break;
+                    }
+                }
+            });
         }
     }
 }
