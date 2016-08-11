@@ -63,11 +63,11 @@ layout_title.xml
 	    android:layout_width="match_parent"
 	    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/row_title"
-                android:layout_margin="10dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/row_title"
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 	
 	</LinearLayout>
 	
