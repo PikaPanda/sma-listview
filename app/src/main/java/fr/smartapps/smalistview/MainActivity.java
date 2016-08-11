@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list);
         setListView();
     }
 
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
 
         // options 4
         SMADataView dataOptionRefreshList = new SMADataView(R.layout.list_button);
-        dataOptionRefreshList.setTitle("Asynchronous ListView");
+        dataOptionRefreshList.setTitle("Refresh ListView");
         dataOptionRefreshList.setId(4);
 
         // add each view
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
                             startActivity(intentAsyncList);
                             break;
                         case 4:
-                            Intent intentRefreshList = new Intent(getApplicationContext(), GridActivity.class);
+                            Intent intentRefreshList = new Intent(getApplicationContext(), RefreshListActivity.class);
                             startActivity(intentRefreshList);
                             break;
                     }

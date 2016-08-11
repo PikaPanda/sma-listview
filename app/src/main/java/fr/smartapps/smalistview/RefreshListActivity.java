@@ -2,6 +2,7 @@ package fr.smartapps.smalistview;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,18 +16,31 @@ import java.util.List;
 /**
  * Created by vchann on 11/08/2016.
  */
-public class ListActivity extends AppCompatActivity implements SMAListListener {
+public class RefreshListActivity extends AppCompatActivity implements SMAListListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list);
+        setContentView(R.layout.activity_refresh);
         setListView();
     }
 
     protected void setListView() {
-        SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(1, getDataViews(), this);
+        final SMAListView listView = (SMAListView) findViewById(R.id.list);
+        if (listView != null) {
+            listView.initData(1, getDataViews(), this);
+        }
+
+        final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) findViewById(R.id.layout_swipe_refresh);
+        if (refreshLayout != null) {
+            refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    // TODO reload view with animation
+                    refreshLayout.setRefreshing(false);
+                }
+            });
+        }
     }
 
     protected List<SMADataView> getDataViews() {

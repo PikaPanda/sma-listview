@@ -17,6 +17,7 @@
         </activity>
 
         <activity android:name=".AsyncListActivity"/>
+        <activity android:name=".RefreshListActivity"/>
         <activity android:name=".GridActivity"/>
         <activity android:name=".ListActivity"/>
 
