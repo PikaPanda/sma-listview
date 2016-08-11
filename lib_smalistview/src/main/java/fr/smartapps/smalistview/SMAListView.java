@@ -18,7 +18,8 @@ public class SMAListView extends RecyclerView {
     protected Context context;
     protected int columnNumber = 1;
     protected StaggeredGridLayoutManager staggeredGridLayoutManager;
-    protected SMAAdapter SMAAdapter;
+    protected SMAAdapter adapter;
+    protected int DEFAULT_ANIMATION_STEP_DELAY = 70;
 
     /*
     Default constructors
@@ -44,8 +45,8 @@ public class SMAListView extends RecyclerView {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (SMAAdapter != null) {
-            setAdapter(SMAAdapter);
+        if (adapter != null) {
+            setAdapter(adapter);
             setHasFixedSize(true);
             staggeredGridLayoutManager = new StaggeredGridLayoutManager(columnNumber, VERTICAL);
             setLayoutManager(staggeredGridLayoutManager);
@@ -53,9 +54,45 @@ public class SMAListView extends RecyclerView {
     }
 
     public void initData(int columnNumber, List<SMADataView> dataViews, SMAListListener SMAListListener) {
-        this.SMAAdapter = new SMAAdapter(dataViews, SMAListListener);
+        this.adapter = new SMAAdapter(context, dataViews, SMAListListener);
         this.columnNumber = columnNumber;
     }
 
+    /*
+    Reload data
+     */
+    public void reloadData(List<SMADataView> dataViews) {
+        if (adapter != null) {
+            adapter.reloadData(dataViews);
+        }
+    }
 
+    /*
+    Reload data with animation (only on visible views)
+     */
+    public void reloadDataWithAnimation(List<SMADataView> dataViews, int animation, int animationStepDelay) {
+        if (adapter != null) {
+            adapter.animationStepDelay = animationStepDelay;
+            adapter.reloadDataWithAnimation(dataViews, staggeredGridLayoutManager.findLastVisibleItemPositions(null)[0] + 1, animation);
+        }
+    }
+
+    public void reloadDataWithAnimation(List<SMADataView> dataViews, int animation) {
+        this.reloadDataWithAnimation(dataViews, animation, DEFAULT_ANIMATION_STEP_DELAY);
+    }
+
+    /*
+    Reload data with animation (on all views)
+    TODO not working well for the moment
+     */
+    protected void reloadAllDataWithAnimation(List<SMADataView> dataViews, int animation, int animationStepDelay) {
+        if (adapter != null) {
+            adapter.animationStepDelay = animationStepDelay;
+            adapter.reloadDataWithAnimation(dataViews, adapter.dataViews.size() - 1, animation);
+        }
+    }
+
+    protected void reloadAllDataWithAnimation(List<SMADataView> dataViews, int animation) {
+        reloadAllDataWithAnimation(dataViews, animation, DEFAULT_ANIMATION_STEP_DELAY);
+    }
 }

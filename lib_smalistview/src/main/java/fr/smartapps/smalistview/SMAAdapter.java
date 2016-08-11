@@ -1,9 +1,13 @@
 package fr.smartapps.smalistview;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import java.util.List;
 
@@ -14,13 +18,18 @@ public class SMAAdapter extends RecyclerView.Adapter<SMAViewHolder> {
 
     protected SMAListListener SMAListListener;
     protected List<SMADataView> dataViews;
+    protected int lastAnimatePosition = 0;
+    protected int enterAnimation;
+    protected int animationStepDelay;
+    protected Context context;
 
     /*
     Constructor
     */
-    public SMAAdapter(List<SMADataView> dataViews, SMAListListener SMAListListener) {
+    public SMAAdapter(Context context, List<SMADataView> dataViews, SMAListListener SMAListListener) {
         this.dataViews = dataViews;
         this.SMAListListener = SMAListListener;
+        this.context = context;
     }
 
     /*
@@ -68,11 +77,32 @@ public class SMAAdapter extends RecyclerView.Adapter<SMAViewHolder> {
                 layoutParams.setFullSpan(false);
                 holder.itemView.setLayoutParams(layoutParams);
             }
+
+            // animate
+            setAnimation(holder.itemView, position);
         }
     }
 
     public void reloadData(List<SMADataView> dataViews) {
         this.dataViews = dataViews;
         notifyDataSetChanged();
+    }
+
+    public void reloadDataWithAnimation(List<SMADataView> dataViews, int lastAnimatePosition, int enterAnimation) {
+        this.dataViews = dataViews;
+        this.lastAnimatePosition = lastAnimatePosition;
+        this.enterAnimation = enterAnimation;
+        notifyDataSetChanged();
+    }
+
+    protected void setAnimation(View view, int position) {
+        if (position < lastAnimatePosition) {
+            Animation animation = AnimationUtils.loadAnimation(context, enterAnimation);
+            animation.setStartOffset(position * animationStepDelay);
+            view.startAnimation(animation);
+        } else {
+            lastAnimatePosition = 0;
+        }
+
     }
 }

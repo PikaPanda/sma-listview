@@ -18,6 +18,12 @@ import java.util.List;
  */
 public class RefreshListActivity extends AppCompatActivity implements SMAListListener {
 
+    protected int showcase = 0;
+    protected final int SHOWCASE_RELOAD_ANIMATE_SCALE = 0;
+    protected final int SHOWCASE_RELOAD_ANIMATE_UP = 1;
+    protected final int SHOWCASE_RELOAD_ANIMATE_ALPHA = 2;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +42,20 @@ public class RefreshListActivity extends AppCompatActivity implements SMAListLis
             refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    // TODO reload view with animation
+                    if (listView != null) {
+                        switch (showcase % 3) {
+                            case SHOWCASE_RELOAD_ANIMATE_SCALE:
+                                listView.reloadDataWithAnimation(getDataViews(), R.anim.scale_in);
+                                break;
+                            case SHOWCASE_RELOAD_ANIMATE_UP:
+                                listView.reloadDataWithAnimation(getDataViews(), R.anim.go_up);
+                                break;
+                            case SHOWCASE_RELOAD_ANIMATE_ALPHA:
+                                listView.reloadDataWithAnimation(getDataViews(), R.anim.dive_in);
+                                break;
+                        }
+                        showcase++;
+                    }
                     refreshLayout.setRefreshing(false);
                 }
             });
