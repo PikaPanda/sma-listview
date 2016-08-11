@@ -26,7 +26,9 @@ public class AsyncListActivity extends AppCompatActivity implements SMAListListe
 
     protected void setListView() {
         SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(2, getDataViews(), this);
+        if (listView != null) {
+            listView.initData(2, getDataViews(), this);
+        }
     }
 
     protected List<SMADataView> getDataViews() {

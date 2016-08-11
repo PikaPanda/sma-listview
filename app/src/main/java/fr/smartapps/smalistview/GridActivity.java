@@ -22,7 +22,9 @@ public class GridActivity extends AppCompatActivity implements SMAListListener {
 
     protected void setListView() {
         SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(3, getDataViews(), this);
+        if (listView != null) {
+            listView.initData(3, getDataViews(), this);
+        }
     }
 
     protected List<SMADataView> getDataViews() {

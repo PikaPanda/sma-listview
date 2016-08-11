@@ -20,7 +20,9 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
 
     protected void setListView() {
         SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(1, getDataViews(), this);
+        if (listView != null) {
+            listView.initData(1, getDataViews(), this);
+        }
     }
 
     protected List<SMADataView> getDataViews() {
