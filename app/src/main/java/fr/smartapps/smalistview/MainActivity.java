@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
 
         // options
         if (dataView.resourceViewIdx == R.layout.list_button) {
-            Button buttonGo = (Button) findViewById(R.id.row_button);
+            Button buttonGo = (Button) itemView.findViewById(R.id.row_button);
 
             if (buttonGo == null)
                 return;
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
                             startActivity(intentGrid);
                             break;
                         case 2:
-                            Intent intentList = new Intent(getApplicationContext(), GridActivity.class);
+                            Intent intentList = new Intent(getApplicationContext(), ListActivity.class);
                             startActivity(intentList);
                             break;
                         case 3:
