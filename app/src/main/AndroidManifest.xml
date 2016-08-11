@@ -16,6 +16,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".AsyncListActivity"/>
         <activity android:name=".GridActivity"/>
         <activity android:name=".ListActivity"/>
 

@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements SMAListListener {
                             startActivity(intentList);
                             break;
                         case 3:
-                            Intent intentAsyncList = new Intent(getApplicationContext(), GridActivity.class);
+                            Intent intentAsyncList = new Intent(getApplicationContext(), AsyncListActivity.class);
                             startActivity(intentAsyncList);
                             break;
                         case 4:

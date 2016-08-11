@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by vchann on 11/08/2016.
  */
-public class ListActivity extends AppCompatActivity implements SMAListListener {
+public class AsyncListActivity extends AppCompatActivity implements SMAListListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,56 +26,62 @@ public class ListActivity extends AppCompatActivity implements SMAListListener {
 
     protected void setListView() {
         SMAListView listView = (SMAListView) findViewById(R.id.list);
-        listView.initData(1, getDataViews(), this);
+        listView.initData(2, getDataViews(), this);
     }
 
     protected List<SMADataView> getDataViews() {
         List<SMADataView> result = new ArrayList<>();
 
-        // grid 1
-        SMADataView dataList1 = new SMADataView(R.layout.list_default);
+        // list header
+        SMADataView header = new SMADataView(R.layout.list_header);
+        header.setImage("pokemon_header.jpg");
+        header.setFullWidth(true);
+
+        // list 1
+        SMADataView dataList1 = new SMADataView(R.layout.list_card);
         dataList1.setImage("carapuce.png");
         dataList1.setTitle("Carapuce");
-        dataList1.setSubtitle("Carapuce est une petite tortue bipède de couleur bleue.");
+        dataList1.setSubtitle("Carapuce est une petite tortue bleue.");
 
-        // grid 2
-        SMADataView dataList2 = new SMADataView(R.layout.list_default);
+        // list 2
+        SMADataView dataList2 = new SMADataView(R.layout.list_card);
         dataList2.setImage("alakazam.png");
         dataList2.setTitle("Alakazam");
         dataList2.setSubtitle("Alakazam a des moustaches plus longues que sa pré-évolution et il a 2 cuillères.");
 
-        // grid 3
-        SMADataView dataList3 = new SMADataView(R.layout.list_default);
+        // list 3
+        SMADataView dataList3 = new SMADataView(R.layout.list_card);
         dataList3.setImage("evoli.png");
         dataList3.setTitle("Evoli");
         dataList3.setSubtitle("Évoli est un Pokémon mammalien et quadrupède avec une fourrure principalement brune.");
 
-        // grid 4
-        SMADataView dataList4 = new SMADataView(R.layout.list_default);
+        // list 4
+        SMADataView dataList4 = new SMADataView(R.layout.list_card);
         dataList4.setImage("pikachu.png");
         dataList4.setTitle("Pikachu");
-        dataList4.setSubtitle("Pikachu est un rongeur au corps dodu.");
+        dataList4.setSubtitle("Pikachu est un petit Pokémon potelé.");
 
-        // grid 5
-        SMADataView dataList5 = new SMADataView(R.layout.list_default);
+        // list 5
+        SMADataView dataList5 = new SMADataView(R.layout.list_card);
         dataList5.setImage("roocool.png");
         dataList5.setTitle("Roucool");
-        dataList5.setSubtitle("Roucool est un petit Pokémon aviaire au corps dodu.");
+        dataList5.setSubtitle("Roucool est un petit Pokémon dodu.");
 
         // populate with a thousand views
+        result.add(header);
         for(int position = 0; position < 1000; position++) {
             switch (position % 5) {
                 case 1:
-                    result.add(dataList1);
-                    break;
-                case 2:
                     result.add(dataList2);
                     break;
+                case 2:
+                    result.add(dataList1);
+                    break;
                 case 3:
-                    result.add(dataList3);
+                    result.add(dataList4);
                     break;
                 case 4:
-                    result.add(dataList4);
+                    result.add(dataList3);
                     break;
                 case 5:
                     result.add(dataList5);
@@ -128,3 +134,4 @@ public class ListActivity extends AppCompatActivity implements SMAListListener {
         return drawable;
     }
 }
+
